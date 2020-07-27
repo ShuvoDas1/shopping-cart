@@ -80,23 +80,21 @@
 
 
    <script>
-      const phonePlusButton=document.getElementById('phonePlusButton');
-      phonePlusButton.addEventListener('click',function(){     
-        incDecQty('phoneInputText',1);  
+      document.getElementById('phonePlusButton').addEventListener('click',function(){
+       
+       incDec('phoneInputText',1);
          
       })
-      const phoneMinusButton = document.getElementById('phoneMinusButton');
-      phoneMinusButton.addEventListener('click',function(){
-        incDecQty( 'phoneInputText',-1);
-       
+      document.getElementById('phoneMinusButton').addEventListener('click',function(){
+         incDec('phoneInputText',-1)
       })
 
-
-      function incDecQty(id,value){
-         const phoneInputText = document.getElementById(id).value;
+      function incDec(id,num){
+         const phoneInputText=document.getElementById(id).value;
          const phoneInputNumber=parseFloat(phoneInputText);
-         const incDecPhoneInputNumber= phoneInputNumber + value;
-         document.getElementById(id).innerText=incDecPhoneInputNumber;
+         const incDecInputNumber= phoneInputNumber + num;
+         document.getElementById(id).value=incDecInputNumber;
+
       }
    </script>
 
