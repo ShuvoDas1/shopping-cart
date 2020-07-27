@@ -82,18 +82,33 @@
    <script>
       document.getElementById('phonePlusButton').addEventListener('click',function(){
        
-       incDec('phoneInputText',1);
+       var qty= incDec('phoneInputText',1);
+
+      multipleSpanNumber('price',qty);
+
          
       })
       document.getElementById('phoneMinusButton').addEventListener('click',function(){
-         incDec('phoneInputText',-1)
+         var qty=incDec('phoneInputText',-1)
+         multipleSpanNumber('price',qty)
       })
+
+      function multipleSpanNumber(id,qty){
+      const spanText=document.getElementById('price').innerText;
+       const spanNumber=parseFloat(spanText);
+       const MultipleSpanNumber=spanNumber * qty;
+       document.getElementById('price').innerText=MultipleSpanNumber;
+      }
 
       function incDec(id,num){
          const phoneInputText=document.getElementById(id).value;
          const phoneInputNumber=parseFloat(phoneInputText);
          const incDecInputNumber= phoneInputNumber + num;
          document.getElementById(id).value=incDecInputNumber;
+         return incDecInputNumber;
+         
+          
+
 
       }
    </script>
