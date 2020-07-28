@@ -43,12 +43,12 @@
                      </div>
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <button id='caseMinusButton' class="btn btn-default"><i class="fas fa-minus"></i></button>
                            <input id='caseCount' type="text" class="form-control text-center" value="1">
-                           <button class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button id='casePlusButton' class="btn btn-default"><i class="fas fa-plus"></i></button>
 
                         </div>
-                        <h5>$59</h5>
+                        <h5>$ <span id='casePrice'>59</span></h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -82,14 +82,54 @@
    <script>
       document.getElementById('phonePlusButton').addEventListener('click',function(){
        
-         productCount(true,'phoneCount');
+         productCount(true,'phoneCount',1219);
 
       })
       document.getElementById('phoneMinusButton').addEventListener('click',function(){
         
          productCount(false,'phoneCount');
       })
-      function productCount(isIncrease,id){
+      document.getElementById('casePlusButton').addEventListener('click',function(){      
+        productCount(true,'caseCount');
+      })
+      
+      document.getElementById('caseMinusButton').addEventListener('click',function(){     
+        productCount(false,'caseCount');
+      })
+      // document.getElementById('casePlusButton').addEventListener('click',function(){
+      //    const caseCount=document.getElementById('caseCount');
+      //    const caseCountNumber=parseInt(caseCount.value);
+      //    const newCaseCount= caseCountNumber + 1;
+      //    caseCount.value=newCaseCount;
+      //    const casePrice= newCaseCount * 59;
+      //    document.getElementById('casePrice').innerText = casePrice;
+
+      // })
+      // document.getElementById('caseMinusButton').addEventListener('click',function(){
+      //    const caseCount = document.getElementById('caseCount');
+      //    const caseCountNumber = parseInt(caseCount.value);
+      //    const newCaseCount = caseCountNumber - 1;
+      //    caseCount.value = newCaseCount;
+      //    const casePrice = newCaseCount * 59;
+      //    document.getElementById('casePrice').innerText = casePrice;
+      // })
+
+      // function productCount2(isIncrease){
+      //    const caseCount=document.getElementById('caseCount');
+      //    const caseCountNumber=parseInt(caseCount.value);
+      //    let newCaseCount = caseCountNumber;
+      //    if(isIncrease == true){
+      //       newCaseCount = caseCountNumber + 1;
+      //    }
+      //    if(isIncrease == false && newCaseCount > 0){
+      //       newCaseCount =  caseCountNumber - 1;
+      //    }
+      //    caseCount.value=newCaseCount;
+      //    const casePrice= newCaseCount * 59;
+      //    document.getElementById('casePrice').innerText = casePrice;
+      // }
+
+      function productCount(isIncrease,id,price){
          const phoneCount=document.getElementById(id);
          const phoneCountNumber=parseInt(phoneCount.value);
          let newPhoneCount= phoneCountNumber;
@@ -100,37 +140,13 @@
             newPhoneCount= phoneCountNumber - 1; 
          }
             phoneCount.value = newPhoneCount;
-            const PhoneTotalPrice = newPhoneCount * 1219;
-            document.getElementById('phonePrice').innerText= PhoneTotalPrice;
+            const PhoneTotalPrice = newPhoneCount * price;
+            document.getElementById(id).innerText= PhoneTotalPrice;
 
-            const subtotal= PhoneTotalPrice + 1278;
+            // const subtotal= PhoneTotalPrice + 1278;
                 
          
       }
-      // document.getElementById('phoneMinusButton').addEventListener('click',function(){
-      //    var phoneMinusQty=incDec('phoneInputText',-1);
-      //    multipleSpanNumber('price',phoneMinusQty);
-         
-      // })
-
-      // function multipleSpanNumber(id,qty){
-      //    const spanText=document.getElementById('price').innerText;
-      //    const spanNumber=parseFloat(spanText);
-      //    const multipleSpanNumber=spanNumber * qty;
-      //     document.getElementById('price').innerText=multipleSpanNumber;
-        
-       
-         
-      // }
-
-      // function incDec(id,num){
-      //    const phoneInputText=document.getElementById(id).value;
-      //    const phoneInputNumber=parseFloat(phoneInputText);
-      //    const incDecInputNumber= phoneInputNumber + num;
-      //    document.getElementById(id).value=incDecInputNumber;
-      //    return incDecInputNumber;
-
-      // }
    </script>
 
 
