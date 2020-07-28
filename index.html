@@ -25,9 +25,9 @@
 
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button id="phoneMinusButton" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <button onclick="productCount(false,'phone')" class="btn btn-default"><i class="fas fa-minus"></i></button>
                            <input id="phoneCount" type="text" class="form-control text-center" value="1">
-                           <button id="phonePlusButton" class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button  onclick="productCount(true,'phone')" class="btn btn-default"><i class="fas fa-plus"></i></button>
                         </div>
                         <h5>$ <span id="phonePrice">1219</span></h5>
                         <img src="images/remove.png" alt="" class="remove-item">
@@ -43,9 +43,9 @@
                      </div>
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button id='caseMinusButton' class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <button onclick="productCount(false,'case')" class="btn btn-default"><i class="fas fa-minus"></i></button>
                            <input id='caseCount' type="text" class="form-control text-center" value="1">
-                           <button id='casePlusButton' class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button onclick="productCount(true,'case')" class="btn btn-default"><i class="fas fa-plus"></i></button>
 
                         </div>
                         <h5>$ <span id='casePrice'>59</span></h5>
@@ -80,22 +80,60 @@
 
 
    <script>
-      document.getElementById('phonePlusButton').addEventListener('click',function(){
+      // document.getElementById('phonePlusButton').addEventListener('click',function(){
        
-         productCount(true,'phoneCount',1219);
+      //    // productCount(true,'phoneCount','phonePrice',1219);
 
-      })
-      document.getElementById('phoneMinusButton').addEventListener('click',function(){
+      // })
+      // document.getElementById('phoneMinusButton').addEventListener('click',function(){
         
-         productCount(false,'phoneCount');
-      })
-      document.getElementById('casePlusButton').addEventListener('click',function(){      
-        productCount(true,'caseCount');
+      //    // productCount(false,'phoneCount','phonePrice',1219);
+      // })
+      // document.getElementById('casePlusButton').addEventListener('click',function(){      
+      //   productCount(true,'caseCount','casePrice',59);
+      // })
+   
+      document.getElementById('caseMinusButton').addEventListener('click',function(){     
+        productCount(false,'caseCount','casePrice',59);
       })
       
-      document.getElementById('caseMinusButton').addEventListener('click',function(){     
-        productCount(false,'caseCount');
-      })
+      function productCount(isIncrease,product){
+         const Count=document.getElementById(product + 'Count');
+         const CountNumber=parseInt(Count.value);
+         let newCount= CountNumber;
+         if(isIncrease == true){
+            newCount= CountNumber + 1;      
+         }
+          if(isIncrease == false && CountNumber > 0){
+            newCount= CountNumber - 1; 
+         }
+            Count.value = newCount;
+            // const TotalPrice = newCount * price;
+         let totalPrice = 0;
+         if(product == 'phone'){
+            totalPrice = newCount * 1219;
+         }
+         if(product == 'case'){
+            totalPrice = newCount * 59;
+         }
+            document.getElementById(product  + 'Price').innerText= totalPrice;             
+         
+      }
+
+      // function productCount(isIncrease,id1,id2,price){
+      //    const Count=document.getElementById(id1);
+      //    const CountNumber=parseInt(Count.value);
+      //    let newCount= CountNumber;
+      //    if(isIncrease == true){
+      //       newCount= CountNumber + 1;      
+      //    }
+      //     if(isIncrease == false && CountNumber > 0){
+      //       newCount= CountNumber - 1; 
+      //    }
+      //       Count.value = newCount;
+      //       const TotalPrice = newCount * price;
+      //       document.getElementById(id2).innerText= TotalPrice;                    
+      // }
       // document.getElementById('casePlusButton').addEventListener('click',function(){
       //    const caseCount=document.getElementById('caseCount');
       //    const caseCountNumber=parseInt(caseCount.value);
@@ -128,25 +166,6 @@
       //    const casePrice= newCaseCount * 59;
       //    document.getElementById('casePrice').innerText = casePrice;
       // }
-
-      function productCount(isIncrease,id,price){
-         const phoneCount=document.getElementById(id);
-         const phoneCountNumber=parseInt(phoneCount.value);
-         let newPhoneCount= phoneCountNumber;
-         if(isIncrease == true){
-            newPhoneCount= phoneCountNumber + 1;      
-         }
-          if(isIncrease == false && phoneCountNumber> 0){
-            newPhoneCount= phoneCountNumber - 1; 
-         }
-            phoneCount.value = newPhoneCount;
-            const PhoneTotalPrice = newPhoneCount * price;
-            document.getElementById(id).innerText= PhoneTotalPrice;
-
-            // const subtotal= PhoneTotalPrice + 1278;
-                
-         
-      }
    </script>
 
 
